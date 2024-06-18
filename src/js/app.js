@@ -44,32 +44,50 @@ function render(variables = {}) {
   // reset the website body with the new html output
   document.querySelector(
     "#widget_content"
-  ).innerHTML = `<div class="m-11 h-72 w-64 flex-col rounded shadow-2xl bg-white relative ">
+  ).innerHTML = `<div class="m-11 h-72 w-56 flex-col rounded shadow-2xl bg-white relative ">
     <div class="h-2/4 relative rounded-t" style="background-image: url(${cover}); background-size: 100% auto;">
       <div class=" absolute bottom-0 ${socialMediaPos} flex-col-reverse w-6 justify-items-center overflow-hidden">
-        <a href="${variables.twitter}">
+        ${
+          variables.twitter
+            ? `<a href="https://twitter.com/${variables.twitter} target="_blank"">
+              <div class="bg-blue-300 w-6 h-6 shadow-inner hover:shadow-lg">
+                <i class="fa-brands fa-twitter translate-x-1 text-white hover:drop-shadow-lg"></i>
+              </div>
+            </a>`
+            : ""
+        }
+        ${
+          variables.github
+            ? `
+        <a href="https://github.com/${variables.github}" target="_blank">
           <div class="bg-blue-300 w-6 h-6 shadow-inner hover:shadow-lg">
-            <i class="fa-brands fa-twitter translate-x-1 text-white hover:shadow-lg"></i>
+            <i class="fa-brands fa-github translate-x-1 text-white hover:drop-shadow-lg"></i>
           </div>
-        </a>
-        <a href="${variables.github}">
+        </a>`
+            : ""
+        }
+        ${
+          variables.linkedin
+            ? `<div class="bg-blue-300 w-6 h-6 shadow-inner hover:shadow-lg">
+            <i class="fa-brands fa-linkedin translate-x-1 text-white hover:drop-shadow-lg"></i>
+          </div>
+        </a>`
+            : ""
+        }
+        ${
+          variables.instagram
+            ? `<a href="https://instagram.com/${variables.instagram}" target="_blank">
           <div class="bg-blue-300 w-6 h-6 shadow-inner hover:shadow-lg">
-            <i class="fa-brands fa-github translate-x-1 text-white hover:shadow-lg"></i>
+            <i class="fa-brands fa-instagram translate-x-1 text-white hover:drop-shadow-lg"></i>
           </div>
-        </a>
-        <a href="${variables.linkedin}">
-          <div class="bg-blue-300 w-6 h-6 shadow-inner hover:shadow-lg">
-            <i class="fa-brands fa-linkedin translate-x-1 text-white hover:shadow-lg"></i>
-          </div>
-        </a>
-        <a href="${variables.instagram}">
-          <div class="bg-blue-300 w-6 h-6 shadow-inner hover:shadow-lg">
-            <i class="fa-brands fa-instagram translate-x-1 text-white hover:shadow-lg"></i>
-          </div>
-        </a>
+        </a>`
+            : ""
+        }
       </div>
     </div>
-    <div class="w-20 h-20 rounded-full absolute translate-x-1/2 right-2/4 -translate-y-3/4 border-white border-4" style="background-image: url(${variables.avatarURL}); background-size: auto 100%;"></div>
+    <div class="w-20 h-20 rounded-full absolute translate-x-1/2 right-2/4 -translate-y-3/4 border-white border-4" style="background-image: url(${
+      variables.avatarURL
+    }); background-size: auto 100%;"></div>
     <div class="flex-col items-center justify-center align-middle p-7 ">
       <h1 class="text-center text-xl">${name}</h1>
       <h2 class="text-gray-400 text-center">${role}<h2>
